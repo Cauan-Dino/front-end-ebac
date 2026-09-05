@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo de Adivinhação</title>
+<style>
+  :root {
+    --tinta: #1c2b24;
+    --papel: #f2ead9;
+    --musgo: #2f5142;
+    --musgo-claro: #4a7862;
+    --ferrugem: #b5502f;
+    --ouro: #c99a3c;
+    --linha: #d8cbaa;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(74,120,98,0.15), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(181,80,47,0.12), transparent 45%),
+      var(--papel);
+    color: var(--tinta);
+    font-family: "Iowan Old Style", "Georgia", "Palatino Linotype", serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 20px;
+  }
+
+  .mapa {
+    width: 100%;
+    max-width: 460px;
+    border: 1px solid var(--linha);
+    background: var(--papel);
+    padding: 40px 36px 34px;
+    position: relative;
+  }
+
+  .mapa::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--linha);
+    pointer-events: none;
+  }
+
+  .selo {
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--musgo-claro);
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.15;
+    margin: 0 0 18px;
+    color: var(--musgo);
+    font-weight: 600;
+  }
+
+  .regras {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #3d372a;
+    margin: 0 0 30px;
+    border-left: 3px solid var(--ouro);
+    padding-left: 16px;
+  }
+
+  .regras strong {
+    color: var(--ferrugem);
+  }
+
+  .campo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  input[type="number"] {
+    flex: 1;
+    font-family: inherit;
+    font-size: 20px;
+    padding: 12px 14px;
+    border: 1px solid var(--tinta);
+    background: #fffdf7;
+    color: var(--tinta);
+  }
+
+  input[type="number"]:focus {
+    outline: 2px solid var(--musgo-claro);
+    outline-offset: 2px;
+  }
+
+  button {
+    font-family: "Courier New", monospace;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    padding: 12px 22px;
+    background: var(--musgo);
+    color: var(--papel);
+    border: 1px solid var(--musgo);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--musgo-claro);
+  }
+
+  button:disabled {
+    background: #a9a190;
+    border-color: #a9a190;
+    cursor: not-allowed;
+  }
+
+  .resultado {
+    min-height: 28px;
+    font-size: 18px;
+    margin: 0 0 10px;
+    color: var(--ferrugem);
+  }
+
+  .resultado.acerto {
+    color: var(--musgo);
+    font-weight: 600;
+  }
+
+  .resultado.derrota {
+    color: var(--ferrugem);
+    font-weight: 600;
+  }
+
+  .tentativas {
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #6b6350;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--linha);
+  }
+
+  .tentativas span {
+    color: var(--tinta);
+    font-weight: 700;
+  }
+
+  @media (max-width: 480px) {
+    .mapa { padding: 30px 22px 26px; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="mapa">
+    <p class="selo">— O NÚMERO PERDIDO —</p>
+    <h1>Jogo de Adivinhação</h1>
+
+    <p class="regras">
+      Escondi um número entre <strong>1</strong> e <strong>100</strong>.
+      Você tem <strong id="max-tentativas-texto">10</strong> tentativas para encontrá-lo.
+      Digite um palpite e clique em "Chutar" — eu digo se o número é maior ou menor.
+    </p>
+
+    <div class="campo">
+      <input type="number" id="palpite" min="1" max="100" placeholder="Seu palpite (1–100)">
+      <button id="chutar-btn">Chutar</button>
+    </div>
+
+    <p class="resultado" id="mensagem"></p>
+    <p class="tentativas" id="tentativas-restantes"></p>
+  </main>
+
+<script>
+  const MAX_TENTATIVAS = 10;
+  let numeroSecreto;
+  let tentativasRestantes;
+  let jogoAtivo;
+
+  const inputPalpite = document.getElementById('palpite');
+  const botaoChutar = document.getElementById('chutar-btn');
+  const mensagemEl = document.getElementById('mensagem');
+  const tentativasEl = document.getElementById('tentativas-restantes');
+
+
+
+
+  
+  function iniciarJogo() {
+    numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    tentativasRestantes = MAX_TENTATIVAS;
+    jogoAtivo = true;
+
+    mensagemEl.textContent = '';
+    mensagemEl.className = 'resultado';
+    atualizarTentativasNaTela();
+
+    inputPalpite.value = '';
+    inputPalpite.disabled = false;
+    botaoChutar.disabled = false;
+    botaoChutar.textContent = 'Chutar';
+    inputPalpite.focus();
+  }
+
+  function atualizarTentativasNaTela() {
+    tentativasEl.innerHTML = 'Tentativas restantes: <span>' + tentativasRestantes + '</span> de ' + MAX_TENTATIVAS;
+  }
+
+  function encerrarJogo(vitoria) {
+    jogoAtivo = false;
+    inputPalpite.disabled = true;
+    botaoChutar.textContent = 'Jogar novamente';
+    mensagemEl.className = vitoria ? 'resultado acerto' : 'resultado derrota';
+  }
+
+  function processarPalpite() {
+    if (!jogoAtivo) {
+      iniciarJogo();
+      return;
+    }
+
+    const valorDigitado = inputPalpite.value;
+    const palpite = parseInt(valorDigitado, 10);
+
+    if (valorDigitado.trim() === '' || isNaN(palpite) || palpite < 1 || palpite > 100) {
+      mensagemEl.className = 'resultado';
+      mensagemEl.textContent = 'Digite um número válido entre 1 e 100.';
+      return;
+    }
+
+    if (palpite === numeroSecreto) {
+      mensagemEl.textContent = 'Você acertou! O número era ' + numeroSecreto + '.';
+      encerrarJogo(true);
+      return;
+    }
+
+    tentativasRestantes--;
+
+    if (tentativasRestantes <= 0) {
+      mensagemEl.textContent = 'Você perdeu! O número secreto era ' + numeroSecreto + '.';
+      atualizarTentativasNaTela();
+      encerrarJogo(false);
+      return;
+    }
+
+    mensagemEl.className = 'resultado';
+    mensagemEl.textContent = palpite < numeroSecreto
+      ? 'O número secreto é maior.'
+      : 'O número secreto é menor.';
+
+    atualizarTentativasNaTela();
+    inputPalpite.value = '';
+    inputPalpite.focus();
+  }
+
+  botaoChutar.addEventListener('click', processarPalpite);
+  inputPalpite.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      processarPalpite();
+    }
+  });
+
+  iniciarJogo();
+</script>
+
+</body>
+</html>
