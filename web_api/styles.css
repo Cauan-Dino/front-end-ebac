@@ -1,0 +1,358 @@
+:root {
+  --paper: #f1ece0;
+  --paper-shadow: #e3ddcc;
+  --ink: #262220;
+  --ink-soft: #6b6255;
+  --line: #c9bfa9;
+  --envelope: #26405c;
+  --envelope-soft: #4a678a;
+  --stamp-red: #b8452f;
+  --ok: #3e6b4d;
+  --radius: 3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper-shadow);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(38, 34, 32, 0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 56px 20px 80px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+}
+
+.sheet {
+  width: 100%;
+  max-width: 620px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 18px 40px -20px rgba(38,34,32,0.45);
+  padding: 40px 44px 44px;
+  position: relative;
+}
+
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(38, 34, 32, 0.14);
+  pointer-events: none;
+}
+
+/* ---------- Header ---------- */
+
+.sheet__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: start;
+  padding-bottom: 28px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.postmark {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: 2px solid var(--envelope);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.postmark::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed var(--envelope-soft);
+  border-radius: 50%;
+}
+
+.postmark__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--envelope);
+  z-index: 1;
+}
+
+.heading__eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 4px 0 10px;
+  transition: color 0.2s ease;
+}
+
+.heading__eyebrow.is-active {
+  color: var(--ok);
+}
+
+.heading h1 {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.heading__sub {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 42ch;
+}
+
+.stamp {
+  width: 58px;
+  height: 70px;
+  border: 2px dotted var(--stamp-red);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(3deg);
+  flex-shrink: 0;
+}
+
+.stamp__value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--stamp-red);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- Form groups ---------- */
+
+.group {
+  border: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.group legend {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--envelope);
+  padding: 0 0 14px;
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 18px;
+}
+
+.field {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field-row .field--small {
+  grid-column: span 1;
+}
+
+.field--small {
+  max-width: 140px;
+}
+
+label {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+input {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+input::placeholder {
+  color: #b3aa9a;
+}
+
+input:focus {
+  border-color: var(--envelope);
+  box-shadow: 0 0 0 3px rgba(38, 64, 92, 0.12);
+}
+
+input[readonly] {
+  background: #eae4d5;
+  color: var(--ink-soft);
+  cursor: default;
+}
+
+.field--cep input {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.03em;
+  max-width: 180px;
+}
+
+.cep-input {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cep-input__status {
+  position: absolute;
+  right: 12px;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.cep-input__status.loading {
+  color: var(--ink-soft);
+}
+
+.cep-input__status.ok {
+  color: var(--ok);
+}
+
+.cep-input__status.error {
+  color: var(--stamp-red);
+}
+
+.field__hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.field__hint.error {
+  color: var(--stamp-red);
+}
+
+/* ---------- Actions ---------- */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--envelope);
+  color: #fdfaf3;
+  border-color: var(--envelope);
+}
+
+.btn--primary:hover {
+  background: var(--envelope-soft);
+  border-color: var(--envelope-soft);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border-color: var(--line);
+}
+
+.btn--ghost:hover {
+  color: var(--ink);
+  border-color: var(--ink-soft);
+}
+
+.save-indicator {
+  text-align: right;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: var(--ok);
+  margin: 14px 0 0;
+  min-height: 16px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.save-indicator.is-visible {
+  opacity: 1;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 560px) {
+  .sheet {
+    padding: 28px 22px 32px;
+  }
+
+  .sheet__header {
+    grid-template-columns: auto 1fr;
+  }
+
+  .stamp {
+    display: none;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .field--small {
+    max-width: none;
+  }
+
+  .heading h1 {
+    font-size: 25px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
