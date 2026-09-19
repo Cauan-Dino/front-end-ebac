@@ -1,10 +1,17 @@
-'use strict';
+/**
+ * classes.js
+ * Definição de todas as classes da aplicação (regras de negócio + interface).
+ * A lógica de cálculo puro (arredondamento, formatação) fica em utils.js;
+ * aqui ficam apenas o modelo de dados e o comportamento orientado a objetos.
+ */
+
+import { arredondarParaCentavos, formatarMoeda, criarLinhaTabelaHTML } from './utils.js';
 
 /**
  * Representa uma faixa de preço/tempo do estacionamento.
  * Ex: pagando entre R$2,00 e R$3,99, o cliente tem direito a 60 minutos.
  */
-class FaixaEstacionamento {
+export class FaixaEstacionamento {
     constructor(valorMinimo, valorMaximo, minutos, descricaoTempo) {
         this.valorMinimo = valorMinimo;
         this.valorMaximo = valorMaximo; // Infinity para a última faixa
@@ -23,7 +30,7 @@ class FaixaEstacionamento {
 /**
  * Resultado do cálculo: encapsula tudo que a interface precisa exibir.
  */
-class ResultadoCalculo {
+export class ResultadoCalculo {
     constructor({ sucesso, mensagem, minutos = null, troco = null }) {
         this.sucesso = sucesso;
         this.mensagem = mensagem;
@@ -36,7 +43,7 @@ class ResultadoCalculo {
  * Classe principal: contém a tabela de faixas e a lógica de cálculo.
  * Encapsula as regras de negócio do estacionamento.
  */
-class Estacionamento {
+export class Estacionamento {
     constructor() {
         this.VALOR_MINIMO_ACEITO = 1.00;
 
@@ -78,6 +85,7 @@ class Estacionamento {
             });
         }
 
+        // find(): percorre as faixas e devolve a primeira que contempla o valor pago.
         const faixaEncontrada = this.faixas.find((faixa) => faixa.contemplaValor(valorInserido));
 
         // Segurança extra: como a última faixa vai até Infinity, isso não deveria
@@ -89,7 +97,7 @@ class Estacionamento {
             });
         }
 
-        const troco = this._arredondar(valorInserido - faixaEncontrada.valorMinimo);
+        const troco = arredondarParaCentavos(valorInserido - faixaEncontrada.valorMinimo);
 
         return new ResultadoCalculo({
             sucesso: true,
@@ -98,20 +106,13 @@ class Estacionamento {
             troco,
         });
     }
-
-    /**
-     * Evita problemas de ponto flutuante (ex: 0.1 + 0.2 !== 0.3) ao lidar com dinheiro.
-     */
-    _arredondar(valor) {
-        return Math.round(valor * 100) / 100;
-    }
 }
 
 /**
  * Classe responsável por toda a interação com o DOM.
  * Mantém a lógica de negócio (Estacionamento) separada da lógica de interface.
  */
-class InterfaceEstacionamento {
+export class InterfaceEstacionamento {
     constructor(estacionamento) {
         this.estacionamento = estacionamento;
 
@@ -124,6 +125,10 @@ class InterfaceEstacionamento {
         this._renderizarTabelaFaixas();
     }
 
+    /**
+     * Todos os eventos são registrados via addEventListener (nenhum
+     * atributo inline como onsubmit/onclick é usado no HTML).
+     */
     _registrarEventos() {
         this.form.addEventListener('submit', (evento) => {
             evento.preventDefault();
@@ -138,6 +143,9 @@ class InterfaceEstacionamento {
         this._exibirResultado(resultado);
     }
 
+    /**
+     * Atualiza a interface dinamicamente, sem recarregar a página.
+     */
     _exibirResultado(resultado) {
         this.divResultado.hidden = false;
         this.divResultado.classList.remove('sucesso', 'erro');
@@ -151,34 +159,20 @@ class InterfaceEstacionamento {
         this.divResultado.classList.add('sucesso');
         this.divResultado.innerHTML = `
             <strong>✅ ${resultado.mensagem}</strong>
-            Troco: ${this._formatarMoeda(resultado.troco)}
+            Troco: ${formatarMoeda(resultado.troco)}
         `;
     }
 
+    /**
+     * Monta a tabela de faixas usando reduce(): cada faixa é transformada
+     * em uma linha HTML (função pura criarLinhaTabelaHTML) e concatenada
+     * ao acumulador, resultando na string final da tabela.
+     */
     _renderizarTabelaFaixas() {
-        const linhas = this.estacionamento.getTabelaFaixas().map((faixa) => {
-            const faixaTexto = faixa.valorMaximo === Infinity
-                ? `A partir de ${this._formatarMoeda(faixa.valorMinimo)}`
-                : `${this._formatarMoeda(faixa.valorMinimo)} a ${this._formatarMoeda(faixa.valorMaximo)}`;
-
-            return `
-                <tr>
-                    <td>${faixaTexto}</td>
-                    <td>${faixa.descricaoTempo}</td>
-                </tr>
-            `;
-        }).join('');
+        const linhas = this.estacionamento
+            .getTabelaFaixas()
+            .reduce((html, faixa) => html + criarLinhaTabelaHTML(faixa), '');
 
         this.tabelaFaixasBody.innerHTML = linhas;
     }
-
-    _formatarMoeda(valor) {
-        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    }
 }
-
-// Ponto de entrada da aplicação
-document.addEventListener('DOMContentLoaded', () => {
-    const estacionamento = new Estacionamento();
-    new InterfaceEstacionamento(estacionamento);
-});
