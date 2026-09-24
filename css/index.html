@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agência Criativa Web: identidade visual, sites e interfaces para marcas que querem ser lembradas.">
+  <title>Agência Criativa Web | Design digital</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="#home" class="logo" aria-label="Agência Criativa Web, voltar ao início">
+        <span class="logo__marca" aria-hidden="true">cw</span>
+        <span class="logo__nome">Agência Criativa Web</span>
+      </a>
+
+      <!-- Menu hambúrguer feito só com CSS (checkbox + label) -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir menu">
+      <label for="menu-toggle" class="menu-botao" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="navegacao" aria-label="Menu principal">
+        <ul class="navegacao__lista">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato" class="navegacao__destaque">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HOME / BANNER ===== -->
+    <section id="home" class="banner">
+      <div class="container banner__conteudo">
+        <div class="banner__texto">
+          <h1 class="banner__titulo">Design que faz sua marca ser lembrada.</h1>
+          <p class="banner__descricao">
+            Criamos identidades visuais, sites e interfaces para pequenas e médias empresas.
+            Nosso diferencial: cada projeto começa ouvindo seus clientes, não só você.
+          </p>
+          <div class="banner__acoes">
+            <a href="#contato" class="botao botao--primario">Pedir um orçamento</a>
+            <a href="#servicos" class="botao botao--secundario">Ver serviços</a>
+          </div>
+        </div>
+
+        <figure class="banner__imagem">
+          <img
+            src="https://picsum.photos/seed/criativaweb-hero/800/900"
+            srcset="https://picsum.photos/seed/criativaweb-hero/480/540 480w,
+                    https://picsum.photos/seed/criativaweb-hero/800/900 800w,
+                    https://picsum.photos/seed/criativaweb-hero/1200/1350 1200w"
+            sizes="(max-width: 56.25em) 100vw, 45vw"
+            alt="Equipe da agência reunida em volta de uma mesa com esboços de layout"
+            width="800" height="900">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE NÓS ===== -->
+    <section id="sobre" class="sobre">
+      <div class="container sobre__conteudo">
+        <figure class="sobre__imagem">
+          <img
+            src="https://picsum.photos/seed/criativaweb-estudio/800/600"
+            srcset="https://picsum.photos/seed/criativaweb-estudio/400/300 400w,
+                    https://picsum.photos/seed/criativaweb-estudio/800/600 800w,
+                    https://picsum.photos/seed/criativaweb-estudio/1200/900 1200w"
+            sizes="(max-width: 56.25em) 100vw, 40vw"
+            alt="Estúdio da agência com mesas de trabalho e luz natural"
+            width="800" height="600"
+            loading="lazy">
+          <figcaption>Nosso estúdio em São Luís, onde tudo começa.</figcaption>
+        </figure>
+
+        <article class="sobre__texto">
+          <h2 class="titulo-secao">Sobre nós</h2>
+          <p>
+            A Agência Criativa Web nasceu em 2016, quando três designers decidiram trocar
+            grandes agências por projetos em que pudessem conhecer cada cliente pelo nome.
+            Hoje somos 12 pessoas entre designers, desenvolvedores e redatores.
+          </p>
+          <p>
+            Trabalhamos com poucos projetos ao mesmo tempo. Assim, quem contrata fala
+            direto com quem desenha.
+          </p>
+
+          <h3 class="sobre__subtitulo">Nossos valores</h3>
+          <ul class="valores">
+            <li><strong>Clareza.</strong> Um bom design explica, não enfeita.</li>
+            <li><strong>Escuta.</strong> Pesquisamos o público antes de abrir o editor.</li>
+            <li><strong>Acessibilidade.</strong> Todo site que entregamos funciona para todos.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== SERVIÇOS (GRID) ===== -->
+    <section id="servicos" class="servicos">
+      <div class="container">
+        <header class="servicos__cabecalho">
+          <h2 class="titulo-secao">Serviços</h2>
+          <p>Do logotipo ao site no ar. Você pode contratar um serviço isolado ou o pacote completo.</p>
+        </header>
+
+        <ul class="servicos__grid">
+          <li class="servico servico--destaque">
+            <h3>Identidade visual</h3>
+            <p>Logotipo, paleta de cores, tipografia e manual de marca para usar em qualquer lugar.</p>
+          </li>
+          <li class="servico">
+            <h3>Sites e landing pages</h3>
+            <p>Sites rápidos, responsivos e fáceis de atualizar por você.</p>
+          </li>
+          <li class="servico">
+            <h3>Design de interfaces</h3>
+            <p>Telas de aplicativos e sistemas pensadas a partir de testes com usuários reais.</p>
+          </li>
+          <li class="servico">
+            <h3>Redes sociais</h3>
+            <p>Modelos de posts e stories que mantêm sua marca reconhecível em cada publicação.</p>
+          </li>
+          <li class="servico">
+            <h3>Motion design</h3>
+            <p>Vinhetas, animações de logotipo e vídeos curtos para campanhas.</p>
+          </li>
+          <li class="servico">
+            <h3>Consultoria de marca</h3>
+            <p>Um diagnóstico da sua comunicação atual, com um plano de melhorias priorizado.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section id="depoimentos" class="depoimentos">
+      <div class="container">
+        <h2 class="titulo-secao">Depoimentos</h2>
+
+        <div class="depoimentos__lista">
+          <figure class="depoimento">
+            <blockquote>
+              <p>“Nosso novo site dobrou os pedidos pelo WhatsApp em três meses. E pela primeira vez eu consigo editar o cardápio sozinha.”</p>
+            </blockquote>
+            <figcaption class="depoimento__autor">
+              <img src="https://picsum.photos/seed/cliente-ana/96/96"
+                   srcset="https://picsum.photos/seed/cliente-ana/96/96 1x,
+                           https://picsum.photos/seed/cliente-ana/192/192 2x"
+                   alt="" width="96" height="96" loading="lazy">
+              <span><strong>Ana Ribeiro</strong><br>Dona do Café Ribeira</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depoimento">
+            <blockquote>
+              <p>“Eles entrevistaram nossos alunos antes de desenhar qualquer coisa. O resultado tem a cara da escola.”</p>
+            </blockquote>
+            <figcaption class="depoimento__autor">
+              <img src="https://picsum.photos/seed/cliente-marcos/96/96"
+                   srcset="https://picsum.photos/seed/cliente-marcos/96/96 1x,
+                           https://picsum.photos/seed/cliente-marcos/192/192 2x"
+                   alt="" width="96" height="96" loading="lazy">
+              <span><strong>Marcos Tavares</strong><br>Diretor da Escola Mar Aberto</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depoimento">
+            <blockquote>
+              <p>“Prazos cumpridos, comunicação direta e uma marca que finalmente parece profissional.”</p>
+            </blockquote>
+            <figcaption class="depoimento__autor">
+              <img src="https://picsum.photos/seed/cliente-julia/96/96"
+                   srcset="https://picsum.photos/seed/cliente-julia/96/96 1x,
+                           https://picsum.photos/seed/cliente-julia/192/192 2x"
+                   alt="" width="96" height="96" loading="lazy">
+              <span><strong>Júlia Martins</strong><br>Fundadora da Verde Casa Arquitetura</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato" class="contato">
+      <div class="container contato__conteudo">
+        <div class="contato__info">
+          <h2 class="titulo-secao">Contato</h2>
+          <p>Conte o que você precisa. Respondemos em até dois dias úteis.</p>
+
+          <address class="contato__dados">
+            <p><strong>Endereço</strong><br>Rua das Palmeiras, 245, Centro<br>São Luís, MA, 65010-000</p>
+            <p><strong>Telefone</strong><br><a href="tel:+559832345678">(98) 3234-5678</a></p>
+            <p><strong>E-mail</strong><br><a href="mailto:contato@criativaweb.com.br">contato@criativaweb.com.br</a></p>
+          </address>
+        </div>
+
+        <form class="formulario" action="#" method="get">
+          <div class="formulario__campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required>
+          </div>
+
+          <div class="formulario__campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+
+          <div class="formulario__campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="botao botao--primario">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>&copy; 2026 Agência Criativa Web. Projeto fictício para fins de estudo.</p>
+      <a href="#home">Voltar ao topo</a>
+    </div>
+  </footer>
+
+</body>
+</html>

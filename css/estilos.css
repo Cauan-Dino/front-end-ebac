@@ -1,0 +1,666 @@
+/* =========================================================
+   Agência Criativa Web - estilos.css
+   Conteúdo: variáveis, base, cabeçalho (Flexbox), banner,
+   sobre, serviços (Grid), depoimentos, contato, rodapé,
+   media queries (tamanho de tela e resolução).
+   ========================================================= */
+
+/* ---------- 1. Variáveis (identidade visual) ---------- */
+:root {
+  /* Cores */
+  --papel: #f4f5fb;      /* fundo claro, levemente azulado */
+  --tinta: #17183b;      /* texto principal */
+  --cobalto: #2e3af0;    /* cor da marca */
+  --girassol: #ffc83d;   /* destaque / chamadas para ação */
+  --lilas: #dadcfb;      /* superfícies secundárias */
+  --cinza: #55577a;      /* texto de apoio */
+  --branco: #ffffff;
+
+  /* Tipografia */
+  --fonte-titulo: "Bricolage Grotesque", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --fonte-texto: "Instrument Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Espaçamentos em rem (relativos à fonte da raiz) */
+  --espaco-p: 0.75rem;
+  --espaco-m: 1.5rem;
+  --espaco-g: 3rem;
+  --espaco-secao: clamp(4rem, 10vh, 7rem);
+
+  --raio: 0.5rem;
+  --largura-max: 72rem;
+}
+
+/* ---------- 2. Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;               /* respeita a preferência do usuário (normalmente 16px) */
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;      /* compensa o cabeçalho fixo ao clicar nos links */
+}
+
+body {
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background-color: var(--papel);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.1;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--girassol);
+  outline-offset: 0.1875rem;
+}
+
+.container {
+  width: 90%;                    /* largura relativa à tela */
+  max-width: var(--largura-max);
+  margin-inline: auto;
+}
+
+.titulo-secao {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--espaco-m);
+}
+
+/* Botões */
+.botao {
+  display: inline-block;
+  padding: 0.9em 1.6em;          /* em: cresce junto com o tamanho da fonte do botão */
+  border-radius: 10em;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0.125rem solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.botao--primario {
+  background-color: var(--girassol);
+  color: var(--tinta);
+}
+
+.botao--primario:hover {
+  transform: translateY(-0.125rem);
+}
+
+.botao--secundario {
+  border-color: currentColor;
+  color: var(--branco);
+}
+
+.botao--secundario:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- 3. Cabeçalho e menu (Flexbox) ---------- */
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--papel);
+  border-bottom: 0.0625rem solid var(--lilas);
+}
+
+.cabecalho__conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 4.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.logo__marca {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50% 50% 50% 0.3rem;  /* forma de "balão de fala": a agência que escuta */
+  background-color: var(--cobalto);
+  color: var(--girassol);
+  font-size: 1.1em;
+  font-weight: 800;
+}
+
+.navegacao__lista {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+}
+
+.navegacao__lista a {
+  text-decoration: none;
+  font-weight: 500;
+  padding-block: 0.4em;
+  border-bottom: 0.125rem solid transparent;
+}
+
+.navegacao__lista a:hover {
+  border-bottom-color: var(--cobalto);
+}
+
+.navegacao__lista .navegacao__destaque {
+  padding: 0.5em 1.1em;
+  border-radius: 10em;
+  background-color: var(--cobalto);
+  color: var(--branco);
+  border-bottom: none;
+}
+
+.navegacao__lista .navegacao__destaque:hover {
+  background-color: var(--tinta);
+}
+
+/* Checkbox do menu fica escondido visualmente, mas acessível ao teclado */
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.menu-botao {
+  display: none;                 /* só aparece em telas pequenas */
+}
+
+/* ---------- 4. Banner (Home) ---------- */
+.banner {
+  background-color: var(--cobalto);
+  color: var(--branco);
+  overflow: hidden;
+}
+
+.banner__conteudo {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: var(--espaco-g);
+  min-height: calc(100vh - 4.5rem);  /* ocupa a tela, descontando o cabeçalho */
+  padding-block: var(--espaco-g);
+}
+
+.banner__titulo {
+  font-size: clamp(2.75rem, 6.5vw, 5.75rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  margin-bottom: var(--espaco-m);
+}
+
+.banner__descricao {
+  max-width: 34em;
+  font-size: 1.1875rem;
+  color: var(--lilas);
+  margin-bottom: var(--espaco-g);
+}
+
+.banner__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-p);
+}
+
+.banner__imagem {
+  position: relative;
+}
+
+/* Bloco amarelo deslocado atrás da foto */
+.banner__imagem::before {
+  content: "";
+  position: absolute;
+  inset: 8% -8% -8% 8%;
+  background-color: var(--girassol);
+  border-radius: var(--raio);
+}
+
+.banner__imagem img {
+  position: relative;
+  width: 100%;
+  max-height: 75vh;
+  object-fit: cover;
+  border-radius: var(--raio);
+}
+
+/* ---------- 5. Sobre nós ---------- */
+.sobre {
+  padding-block: var(--espaco-secao);
+}
+
+.sobre__conteudo {
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.sobre__imagem {
+  flex: 1 1 45%;
+}
+
+.sobre__imagem img {
+  width: 100%;
+  border-radius: var(--raio);
+}
+
+.sobre__imagem figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--cinza);
+}
+
+.sobre__texto {
+  flex: 1 1 55%;
+  max-width: 36rem;
+}
+
+.sobre__texto p + p {
+  margin-top: 1em;
+}
+
+.sobre__subtitulo {
+  font-size: 1.375rem;
+  margin: var(--espaco-g) 0 var(--espaco-p);
+}
+
+.valores li {
+  padding: 0.9em 0;
+  border-top: 0.0625rem solid var(--lilas);
+}
+
+.valores strong {
+  color: var(--cobalto);
+}
+
+/* ---------- 6. Serviços (CSS Grid) ---------- */
+.servicos {
+  padding-block: var(--espaco-secao);
+  background-color: var(--branco);
+}
+
+.servicos__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espaco-p) var(--espaco-g);
+  margin-bottom: var(--espaco-g);
+}
+
+.servicos__cabecalho .titulo-secao {
+  margin-bottom: 0;
+}
+
+.servicos__cabecalho p {
+  max-width: 28rem;
+  color: var(--cinza);
+}
+
+/* O gap de 1px sobre o fundo escuro desenha as linhas entre os serviços */
+.servicos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.0625rem;
+  background-color: var(--tinta);
+  border: 0.0625rem solid var(--tinta);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+
+.servico {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background-color: var(--branco);
+  min-height: 14rem;
+}
+
+.servico h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.servico p {
+  color: var(--cinza);
+}
+
+.servico--destaque {
+  background-color: var(--girassol);
+}
+
+.servico--destaque p {
+  color: var(--tinta);
+}
+
+/* ---------- 7. Depoimentos ---------- */
+.depoimentos {
+  padding-block: var(--espaco-secao);
+  background-color: var(--lilas);
+}
+
+.depoimentos__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--espaco-m);
+}
+
+.depoimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--espaco-m);
+  padding: 2rem;
+  background-color: var(--papel);
+  border-radius: 1.5rem 1.5rem 1.5rem 0.3rem;   /* mesma forma de balão do logo */
+}
+
+.depoimento blockquote p {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.depoimento__autor {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--cinza);
+}
+
+.depoimento__autor strong {
+  color: var(--tinta);
+}
+
+.depoimento__autor img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---------- 8. Contato ---------- */
+.contato {
+  padding-block: var(--espaco-secao);
+}
+
+.contato__conteudo {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.contato__info > p {
+  color: var(--cinza);
+  margin-bottom: var(--espaco-g);
+}
+
+.contato__dados {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-m);
+}
+
+.contato__dados a {
+  color: var(--cobalto);
+  font-weight: 500;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-m);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background-color: var(--branco);
+  border: 0.0625rem solid var(--lilas);
+  border-radius: var(--raio);
+}
+
+.formulario__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.formulario label {
+  font-weight: 600;
+}
+
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  padding: 0.8em 1em;
+  font: inherit;
+  color: var(--tinta);
+  background-color: var(--papel);
+  border: 0.125rem solid var(--lilas);
+  border-radius: calc(var(--raio) / 1.5);
+}
+
+.formulario textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+  border-color: var(--cobalto);
+}
+
+.formulario .botao {
+  align-self: flex-start;
+}
+
+/* ---------- 9. Rodapé ---------- */
+.rodape {
+  background-color: var(--tinta);
+  color: var(--lilas);
+  font-size: 0.9375rem;
+}
+
+.rodape__conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--espaco-p);
+  padding-block: var(--espaco-m);
+}
+
+/* =========================================================
+   10. MEDIA QUERIES
+   Breakpoints em em (56.25em = 900px, 37.5em = 600px)
+   ========================================================= */
+
+/* Tablets e telas médias */
+@media (max-width: 56.25em) {
+  .banner__conteudo {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-block: var(--espaco-secao);
+  }
+
+  .banner__imagem {
+    max-width: 32rem;
+  }
+
+  .banner__imagem img {
+    max-height: 55vh;
+  }
+
+  .sobre__conteudo {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sobre__texto {
+    max-width: none;
+  }
+
+  .servicos__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contato__conteudo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Celulares: menu hambúrguer */
+@media (max-width: 37.5em) {
+  .logo__nome {
+    font-size: 1rem;
+  }
+
+  .menu-botao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.6rem;
+    cursor: pointer;
+    border-radius: var(--raio);
+  }
+
+  .menu-botao span {
+    display: block;
+    height: 0.1875rem;
+    background-color: var(--tinta);
+    border-radius: 1rem;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle:focus-visible + .menu-botao {
+    outline: 0.1875rem solid var(--girassol);
+  }
+
+  /* Menu escondido por padrão, ocupa a largura toda ao abrir */
+  .navegacao {
+    flex-basis: 100%;
+    display: none;
+  }
+
+  .menu-toggle:checked ~ .navegacao {
+    display: block;
+  }
+
+  .navegacao__lista {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: var(--espaco-m);
+  }
+
+  .navegacao__lista a {
+    display: block;
+    padding: 0.9em 0;
+    border-bottom: 0.0625rem solid var(--lilas);
+  }
+
+  .navegacao__lista .navegacao__destaque {
+    margin-top: var(--espaco-m);
+    text-align: center;
+  }
+
+  /* Ícone vira um "X" quando o menu está aberto */
+  .menu-toggle:checked + .menu-botao span:nth-child(1) {
+    transform: translateY(0.5375rem) rotate(45deg);
+  }
+
+  .menu-toggle:checked + .menu-botao span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle:checked + .menu-botao span:nth-child(3) {
+    transform: translateY(-0.5375rem) rotate(-45deg);
+  }
+
+  .banner__descricao {
+    font-size: 1.0625rem;
+  }
+
+  .banner__acoes .botao {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .servicos__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .servico {
+    min-height: auto;
+  }
+
+  .formulario .botao {
+    align-self: stretch;
+  }
+}
+
+/* Telas grandes: aproveita mais a largura */
+@media (min-width: 90em) {
+  html {
+    font-size: 112.5%;           /* 18px: tudo em rem cresce junto */
+  }
+}
+
+/* Telas de alta densidade (retina): linhas mais finas e nítidas */
+@media (min-resolution: 2dppx) {
+  .cabecalho {
+    border-bottom-width: 0.03125rem;
+  }
+}
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
