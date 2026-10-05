@@ -1,0 +1,799 @@
+/* =========================================================
+   CARDUME VIAGENS — estilos.css
+   Abordagem mobile-first: os estilos base valem para telas
+   pequenas e as media queries (min-width) ampliam o layout.
+   Breakpoints: 36em (576px) | 48em (768px) | 56em (896px)
+                64em (1024px) | 90em (1440px)
+   ========================================================= */
+
+/* ---------- 1. Identidade visual (variáveis) ---------- */
+:root {
+  --azul: #13315c;          /* cor principal da marca */
+  --azul-escuro: #0b1f3a;   /* fundos escuros e rodapé */
+  --sol: #f2b33d;           /* destaque: botões, linhas, foco */
+  --mangue: #2f6b57;        /* subtítulos e detalhes */
+  --espuma: #f5f8fa;        /* fundo da página */
+  --branco: #ffffff;
+  --texto: #1c2633;
+  --texto-suave: #4a5768;
+  --borda: #c9d3dd;
+  --erro: #b3261e;
+
+  --fonte-titulo: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --fonte-texto: "Figtree", "Segoe UI", Arial, sans-serif;
+
+  --raio: 0.5rem;
+  --espaco-secao: 4.5rem;
+}
+
+/* ---------- 2. Reset básico ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;                /* 1rem = 16px por padrão do navegador */
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;       /* compensa o cabeçalho fixo ao clicar no menu */
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background-color: var(--espuma);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--fonte-titulo);
+  line-height: 1.15;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--sol);
+  outline-offset: 0.1875rem;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Container central: largura relativa com limite máximo */
+.container {
+  width: min(90%, 72rem);
+  margin-inline: auto;
+}
+
+/* ---------- 3. Botões ---------- */
+.botao {
+  display: inline-block;
+  padding: 0.875em 1.5em;
+  border: 0.125rem solid transparent;
+  border-radius: var(--raio);
+  font-family: var(--fonte-texto);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.botao--primario {
+  background-color: var(--sol);
+  color: var(--azul-escuro);
+}
+
+.botao--primario:hover {
+  background-color: #ffc95e;
+}
+
+.botao--contorno {
+  border-color: var(--branco);
+  color: var(--branco);
+}
+
+.botao--contorno:hover {
+  background-color: var(--branco);
+  color: var(--azul);
+}
+
+/* =========================================================
+   4. CABEÇALHO E MENU (Flexbox)
+   ========================================================= */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--azul);
+  color: var(--branco);
+}
+
+.topo__conteudo {
+  display: flex;
+  flex-wrap: wrap;                 /* no celular o menu desce para a linha de baixo */
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.875rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--branco);
+}
+
+.logo__icone {
+  width: 2.25em;
+  fill: var(--sol);
+}
+
+/* Checkbox escondido visualmente, mas ainda acessível pelo teclado */
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.menu-toggle:focus-visible + .menu-botao {
+  outline: 0.1875rem solid var(--sol);
+  outline-offset: 0.125rem;
+}
+
+/* Ícone hambúrguer desenhado com CSS */
+.menu-botao__linhas,
+.menu-botao__linhas::before,
+.menu-botao__linhas::after {
+  display: block;
+  width: 1.5rem;
+  height: 0.1875rem;
+  border-radius: 0.125rem;
+  background-color: var(--branco);
+  transition: transform 0.25s, background-color 0.25s;
+}
+
+.menu-botao__linhas {
+  position: relative;
+}
+
+.menu-botao__linhas::before,
+.menu-botao__linhas::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-botao__linhas::before { top: -0.5rem; }
+.menu-botao__linhas::after  { top: 0.5rem; }
+
+/* Quando aberto, o hambúrguer vira um X */
+.menu-toggle:checked + .menu-botao .menu-botao__linhas {
+  background-color: transparent;
+}
+
+.menu-toggle:checked + .menu-botao .menu-botao__linhas::before {
+  transform: translateY(0.5rem) rotate(45deg);
+}
+
+.menu-toggle:checked + .menu-botao .menu-botao__linhas::after {
+  transform: translateY(-0.5rem) rotate(-45deg);
+}
+
+/* Menu no celular: escondido até o botão ser acionado */
+.menu {
+  display: none;
+  flex-basis: 100%;
+}
+
+.menu-toggle:checked ~ .menu {
+  display: block;
+}
+
+.menu__lista {
+  display: flex;
+  flex-direction: column;          /* itens empilhados em telas pequenas */
+  margin: 0;
+  padding: 0.75rem 0 0.5rem;
+  list-style: none;
+}
+
+.menu__lista a {
+  display: block;
+  padding: 0.875rem 0;
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.menu__lista a:hover {
+  color: var(--sol);
+}
+
+/* =========================================================
+   5. HOME (banner)
+   ========================================================= */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 88vh;
+  min-height: 88svh;               /* navegadores modernos: ignora a barra do celular */
+  padding-block: 6rem 5rem;
+  color: var(--branco);
+  overflow: hidden;
+}
+
+.hero__imagem,
+.hero__imagem img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__imagem img {
+  object-fit: cover;
+}
+
+/* Película escura para garantir leitura do texto sobre a foto */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 31, 58, 0.92) 0%,
+    rgba(11, 31, 58, 0.55) 55%,
+    rgba(11, 31, 58, 0.15) 100%
+  );
+}
+
+.hero__conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__titulo {
+  max-width: 16ch;
+  margin-bottom: 1.25rem;
+  font-size: clamp(2.25rem, 1rem + 6vw, 5.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+.hero__texto {
+  max-width: 38em;
+  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero__destaques {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.hero__destaques li {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.hero__destaques li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: var(--sol);
+}
+
+/* Onda na base do banner: o elemento marcante da identidade */
+.hero__onda {
+  position: absolute;
+  bottom: -0.0625rem;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 3rem;
+  fill: var(--espuma);
+}
+
+/* =========================================================
+   6. SEÇÕES (padrões gerais)
+   ========================================================= */
+.secao {
+  padding-block: var(--espaco-secao);
+}
+
+.secao__titulo {
+  margin-bottom: 1.5rem;
+  font-size: clamp(2rem, 1.25rem + 3vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--azul);
+}
+
+.secao__intro {
+  max-width: 36em;
+  margin-bottom: 3rem;
+  font-size: 1.125rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Sobre nós ---------- */
+.sobre__grade {
+  display: grid;
+  gap: 3rem;
+}
+
+.sobre__texto > p {
+  max-width: 38em;
+  font-size: 1.0625rem;
+}
+
+.sobre__subtitulo {
+  margin: 2.5rem 0 1.25rem;
+  font-size: 1.375rem;
+  color: var(--azul);
+}
+
+.valores {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.valor {
+  padding-left: 1rem;
+  border-left: 0.25rem solid var(--mangue);
+}
+
+.valor h4 {
+  margin-bottom: 0.25rem;
+  font-size: 1.0625rem;
+  color: var(--mangue);
+}
+
+.valor p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+.sobre__figura {
+  margin: 0;
+}
+
+.sobre__figura img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.sobre__figura figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Serviços (CSS Grid) ---------- */
+.servicos {
+  background-color: var(--branco);
+}
+
+.servicos__grade {
+  display: grid;
+  grid-template-columns: 1fr;      /* 1 coluna no celular */
+  gap: 2.5rem 2rem;
+}
+
+.servico {
+  padding-top: 1.25rem;
+  border-top: 0.25rem solid var(--sol);
+}
+
+.servico h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3125rem;
+  color: var(--azul);
+}
+
+.servico p {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+/* ---------- Depoimentos ---------- */
+.depoimentos {
+  color: var(--branco);
+  background-color: var(--azul-escuro);
+  /* Imagem leve por padrão; versões maiores nas media queries abaixo */
+  background-image:
+    linear-gradient(rgba(11, 31, 58, 0.86), rgba(11, 31, 58, 0.86)),
+    url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=60");
+  background-size: cover;
+  background-position: center;
+}
+
+.depoimentos .secao__titulo {
+  color: var(--branco);
+}
+
+.depoimentos__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.depoimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  padding: 2rem 1.75rem;
+  border-left: 0.25rem solid var(--sol);
+  border-radius: 0 var(--raio) var(--raio) 0;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.depoimento blockquote {
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.depoimento blockquote p {
+  margin: 0;
+}
+
+.depoimento blockquote p::before { content: "\201C"; }
+.depoimento blockquote p::after  { content: "\201D"; }
+
+.depoimento__nome {
+  display: block;
+  font-weight: 600;
+  color: var(--sol);
+}
+
+.depoimento__info {
+  display: block;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- Contato ---------- */
+.contato__grade {
+  display: grid;
+  gap: 3rem;
+}
+
+.contato__info > p {
+  font-size: 1.125rem;
+  color: var(--texto-suave);
+}
+
+.contato__dados {
+  font-style: normal;
+  margin-top: 2rem;
+}
+
+.contato__dados p {
+  margin-bottom: 1.25rem;
+}
+
+.contato__dados strong {
+  display: block;
+  font-family: var(--fonte-titulo);
+  font-weight: 600;
+  color: var(--azul);
+}
+
+.contato__dados a {
+  color: var(--azul);
+  text-underline-offset: 0.2em;
+  word-break: break-word;
+}
+
+.contato__dados a:hover {
+  color: var(--mangue);
+}
+
+.formulario {
+  display: grid;
+  gap: 1.25rem;
+  padding: 2rem 1.5rem;
+  border: 0.0625rem solid var(--borda);
+  border-radius: 1rem;
+  background-color: var(--branco);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 0.75em 1em;
+  border: 0.125rem solid var(--borda);
+  border-radius: var(--raio);
+  font: inherit;
+  color: var(--texto);
+  background-color: var(--espuma);
+}
+
+.campo textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  outline: 0.1875rem solid var(--sol);
+  outline-offset: 0;
+  border-color: var(--azul);
+  background-color: var(--branco);
+}
+
+/* Destaca o erro só depois que o usuário interagiu com o campo */
+.campo input:user-invalid,
+.campo textarea:user-invalid {
+  border-color: var(--erro);
+}
+
+.formulario .botao {
+  justify-self: start;
+}
+
+.formulario__nota {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  padding-block: 2rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: var(--azul-escuro);
+}
+
+.rodape__conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rodape p {
+  margin: 0;
+}
+
+.rodape a {
+  color: var(--sol);
+}
+
+/* =========================================================
+   7. MEDIA QUERIES — LARGURA DA TELA
+   ========================================================= */
+
+/* Celular grande / tablet pequeno (a partir de 576px) */
+@media (min-width: 36em) {
+  .valores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .servicos__grade {
+    grid-template-columns: repeat(2, 1fr);   /* 2 colunas */
+  }
+
+  .hero__destaques {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+  }
+
+  .formulario {
+    padding: 2.5rem;
+  }
+
+  .hero__onda {
+    height: 4rem;
+  }
+}
+
+/* Tablet (a partir de 768px): menu volta a ficar em linha */
+@media (min-width: 48em) {
+  :root {
+    --espaco-secao: 6rem;
+  }
+
+  .menu-botao {
+    display: none;
+  }
+
+  .menu,
+  .menu-toggle:checked ~ .menu {
+    display: block;
+    flex-basis: auto;
+  }
+
+  .menu__lista {
+    flex-direction: row;             /* Flexbox horizontal */
+    align-items: center;
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .menu__lista a {
+    padding: 0.5em 0;
+    border-bottom: 0.125rem solid transparent;
+  }
+
+  .menu__lista a:hover {
+    color: var(--branco);
+    border-bottom-color: var(--sol);
+  }
+
+  .menu__lista .menu__destaque {
+    padding: 0.5em 1.1em;
+    border: 0.125rem solid var(--sol);
+    border-radius: var(--raio);
+  }
+
+  .menu__lista .menu__destaque:hover {
+    background-color: var(--sol);
+    color: var(--azul-escuro);
+  }
+}
+
+/* Telas médias (a partir de 896px) */
+@media (min-width: 56em) {
+  .sobre__grade {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 5vw;
+  }
+
+  .depoimentos__lista {
+    flex-direction: row;             /* depoimentos lado a lado */
+  }
+
+  .depoimento {
+    flex: 1 1 0;
+  }
+
+  .contato__grade {
+    grid-template-columns: 1fr 1.3fr;
+    align-items: start;
+    gap: 5vw;
+  }
+}
+
+/* Desktop (a partir de 1024px) */
+@media (min-width: 64em) {
+  .servicos__grade {
+    grid-template-columns: repeat(3, 1fr);   /* 3 colunas */
+    gap: 3.5rem 3rem;
+  }
+
+  .hero {
+    padding-block: 8rem 7rem;
+  }
+
+  .hero__onda {
+    height: 5rem;
+  }
+
+  .depoimentos {
+    background-image:
+      linear-gradient(rgba(11, 31, 58, 0.86), rgba(11, 31, 58, 0.86)),
+      url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=60");
+  }
+}
+
+/* Telas grandes (a partir de 1440px): texto um pouco maior */
+@media (min-width: 90em) {
+  html {
+    font-size: 112.5%;               /* 1rem passa a valer 18px */
+  }
+}
+
+/* =========================================================
+   8. MEDIA QUERIES — RESOLUÇÃO (telas retina / alta densidade)
+   ========================================================= */
+@media (min-resolution: 2dppx), (-webkit-min-device-pixel-ratio: 2) {
+  .depoimentos {
+    background-image:
+      linear-gradient(rgba(11, 31, 58, 0.86), rgba(11, 31, 58, 0.86)),
+      url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=60");
+  }
+}
+
+@media (min-width: 64em) and (min-resolution: 2dppx),
+       (min-width: 64em) and (-webkit-min-device-pixel-ratio: 2) {
+  .depoimentos {
+    background-image:
+      linear-gradient(rgba(11, 31, 58, 0.86), rgba(11, 31, 58, 0.86)),
+      url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2400&q=60");
+  }
+}
+
+/* =========================================================
+   9. ACESSIBILIDADE — menos movimento
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

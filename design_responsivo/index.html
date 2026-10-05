@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cardume Viagens: roteiros pelo Brasil em grupos de até 12 pessoas, com guias locais em cada destino.">
+  <title>Cardume Viagens | Viagens em pequenos grupos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header class="topo">
+    <div class="container topo__conteudo">
+      <a href="#home" class="logo" aria-label="Cardume Viagens, ir para o início">
+        <svg class="logo__icone" viewBox="0 0 48 32" aria-hidden="true" focusable="false">
+          <path d="M4 10c4-5 10-5 14 0-4 5-10 5-14 0Zm14 0 4-4v8Z" />
+          <path d="M14 22c4-5 10-5 14 0-4 5-10 5-14 0Zm14 0 4-4v8Z" />
+          <path d="M24 10c4-5 10-5 14 0-4 5-10 5-14 0Zm14 0 4-4v8Z" />
+        </svg>
+        <span>Cardume</span>
+      </a>
+
+      <!-- Menu hambúrguer feito só com CSS (checkbox + label) -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-controls="menu-principal">
+      <label for="menu-toggle" class="menu-botao">
+        <span class="menu-botao__linhas" aria-hidden="true"></span>
+        <span class="visualmente-oculto">Abrir ou fechar o menu</span>
+      </label>
+
+      <nav class="menu" id="menu-principal" aria-label="Navegação principal">
+        <ul class="menu__lista">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#contato" class="menu__destaque">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== HOME ===================== -->
+    <section id="home" class="hero" aria-labelledby="hero-titulo">
+      <picture class="hero__imagem">
+        <source media="(min-width: 64em)"
+                srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1600&amp;h=900&amp;q=70 1600w,
+                        https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=2400&amp;h=1350&amp;q=70 2400w"
+                sizes="100vw">
+        <source media="(min-width: 36em)"
+                srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1024&amp;h=768&amp;q=70 1024w,
+                        https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=1600&amp;h=1200&amp;q=70 1600w"
+                sizes="100vw">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=640&amp;h=960&amp;q=70"
+             srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=640&amp;h=960&amp;q=70 640w,
+                     https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&amp;fit=crop&amp;w=960&amp;h=1440&amp;q=70 960w"
+             sizes="100vw"
+             width="640" height="960"
+             alt="Praia de água azul-turquesa com areia clara e céu limpo"
+             fetchpriority="high">
+      </picture>
+
+      <div class="container hero__conteudo">
+        <h1 id="hero-titulo" class="hero__titulo">Viaje em pequenos grupos, com quem conhece o caminho.</h1>
+        <p class="hero__texto">
+          A Cardume monta roteiros pelo Brasil para no máximo 12 pessoas, com guias que moram em cada destino.
+          Menos fila, mais conversa e tempo de sobra para aproveitar o lugar.
+        </p>
+        <div class="hero__acoes">
+          <a href="#servicos" class="botao botao--primario">Ver serviços</a>
+          <a href="#contato" class="botao botao--contorno">Falar com a gente</a>
+        </div>
+        <ul class="hero__destaques">
+          <li>Grupos de até 12 pessoas</li>
+          <li>Guias locais em cada destino</li>
+          <li>Preço fechado, sem taxa escondida</li>
+        </ul>
+      </div>
+
+      <svg class="hero__onda" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 40c120-30 240-30 360 0s240 30 360 0 240-30 360 0 240 30 360 0v40H0Z" />
+      </svg>
+    </section>
+
+    <!-- ===================== SOBRE NÓS ===================== -->
+    <section id="sobre" class="secao sobre" aria-labelledby="sobre-titulo">
+      <div class="container sobre__grade">
+        <div class="sobre__texto">
+          <h2 id="sobre-titulo" class="secao__titulo">Sobre nós</h2>
+          <p>
+            A Cardume nasceu em 2014, quando duas guias de turismo cansaram de ver viajantes passarem
+            correndo pelos lugares que elas amavam. A ideia era simples: grupos pequenos, ritmo tranquilo
+            e alguém da região mostrando o que nenhum guia impresso mostra.
+          </p>
+          <p>
+            Hoje somos uma equipe de 18 pessoas e mais de 60 guias parceiros espalhados pelo país.
+            Já levamos mais de 9 mil viajantes, e muitos deles voltam todo ano.
+          </p>
+
+          <h3 class="sobre__subtitulo">No que acreditamos</h3>
+          <ul class="valores">
+            <li class="valor">
+              <h4>Respeito ao lugar</h4>
+              <p>Trabalhamos com pousadas, restaurantes e guias da própria comunidade.</p>
+            </li>
+            <li class="valor">
+              <h4>Grupo pequeno de verdade</h4>
+              <p>Doze pessoas é o limite, mesmo quando a procura é grande.</p>
+            </li>
+            <li class="valor">
+              <h4>Preço claro</h4>
+              <p>O valor que você vê no orçamento é o valor que você paga.</p>
+            </li>
+            <li class="valor">
+              <h4>Segurança em primeiro lugar</h4>
+              <p>Todos os guias têm formação em primeiros socorros e seguro incluso.</p>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="sobre__figura">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=70"
+               srcset="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=480&amp;h=600&amp;q=70 480w,
+                       https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=800&amp;h=1000&amp;q=70 800w,
+                       https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=1200&amp;h=1500&amp;q=70 1200w"
+               sizes="(min-width: 56em) 40vw, 90vw"
+               width="800" height="1000"
+               alt="Vale com montanhas iluminadas pelo sol no fim da tarde"
+               loading="lazy">
+          <figcaption>Saída de grupo para uma trilha de nível moderado.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== SERVIÇOS ===================== -->
+    <section id="servicos" class="secao servicos" aria-labelledby="servicos-titulo">
+      <div class="container">
+        <h2 id="servicos-titulo" class="secao__titulo">Serviços</h2>
+        <p class="secao__intro">Do roteiro pronto à viagem montada do zero, cuidamos de cada etapa.</p>
+
+        <div class="servicos__grade">
+          <article class="servico">
+            <h3>Roteiros em grupo</h3>
+            <p>Saídas todo mês com datas fixas, guia do início ao fim e hospedagem já reservada.</p>
+          </article>
+          <article class="servico">
+            <h3>Viagens sob medida</h3>
+            <p>Montamos o roteiro com as suas datas, o seu ritmo e o seu orçamento.</p>
+          </article>
+          <article class="servico">
+            <h3>Ecoturismo e trilhas</h3>
+            <p>Trilhas guiadas e classificadas por nível de esforço, do passeio leve à travessia.</p>
+          </article>
+          <article class="servico">
+            <h3>Viagens para empresas</h3>
+            <p>Encontros de equipe, convenções e viagens de incentivo com toda a logística resolvida.</p>
+          </article>
+          <article class="servico">
+            <h3>Passagens e hospedagem</h3>
+            <p>Reservamos voos e pousadas que a nossa equipe já visitou e aprovou.</p>
+          </article>
+          <article class="servico">
+            <h3>Seguro e documentação</h3>
+            <p>Seguro viagem, orientação sobre vistos e uma lista do que levar antes do embarque.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEPOIMENTOS ===================== -->
+    <section id="depoimentos" class="secao depoimentos" aria-labelledby="depoimentos-titulo">
+      <div class="container">
+        <h2 id="depoimentos-titulo" class="secao__titulo">Depoimentos</h2>
+
+        <div class="depoimentos__lista">
+          <figure class="depoimento">
+            <blockquote>
+              <p>Foi a primeira viagem em que eu não precisei pensar em nada. O guia sabia o nome de todo mundo no segundo dia.</p>
+            </blockquote>
+            <figcaption>
+              <span class="depoimento__nome">Marina Coelho</span>
+              <span class="depoimento__info">Recife, roteiro em grupo</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depoimento">
+            <blockquote>
+              <p>Levamos 40 pessoas da empresa e tudo funcionou no horário. A equipe resolveu um voo cancelado antes de a gente perceber.</p>
+            </blockquote>
+            <figcaption>
+              <span class="depoimento__nome">Ricardo Alves</span>
+              <span class="depoimento__info">Belo Horizonte, viagem corporativa</span>
+            </figcaption>
+          </figure>
+
+          <figure class="depoimento">
+            <blockquote>
+              <p>Pedimos uma lua de mel tranquila e longe de multidão. Recebemos exatamente isso, com um preço que coube no bolso.</p>
+            </blockquote>
+            <figcaption>
+              <span class="depoimento__nome">Joana e Tiago Prado</span>
+              <span class="depoimento__info">Curitiba, viagem sob medida</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTATO ===================== -->
+    <section id="contato" class="secao contato" aria-labelledby="contato-titulo">
+      <div class="container contato__grade">
+        <div class="contato__info">
+          <h2 id="contato-titulo" class="secao__titulo">Contato</h2>
+          <p>Conte para onde quer ir e quando. Respondemos em até um dia útil.</p>
+
+          <address class="contato__dados">
+            <p>
+              <strong>Endereço</strong>
+              Rua das Gaivotas, 210, sala 4<br>
+              Centro, Florianópolis, SC, 88010-000
+            </p>
+            <p>
+              <strong>Telefone</strong>
+              <a href="tel:+554833330000">(48) 3333-0000</a>
+            </p>
+            <p>
+              <strong>E-mail</strong>
+              <a href="mailto:contato@cardumeviagens.com.br">contato@cardumeviagens.com.br</a>
+            </p>
+            <p>
+              <strong>Atendimento</strong>
+              Segunda a sexta, das 9h às 18h
+            </p>
+          </address>
+        </div>
+
+        <form class="formulario" action="#contato" method="post">
+          <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required minlength="2" placeholder="Seu nome completo">
+          </div>
+
+          <div class="campo">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder="voce@exemplo.com">
+          </div>
+
+          <div class="campo">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="5" required minlength="10"
+                      placeholder="Ex.: queremos viajar em julho, 2 adultos, para algum lugar com trilhas leves."></textarea>
+          </div>
+
+          <button type="submit" class="botao botao--primario">Enviar mensagem</button>
+          <p class="formulario__nota">Todos os campos são obrigatórios.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape">
+    <div class="container rodape__conteudo">
+      <p>&copy; 2026 Cardume Viagens. Agência fictícia criada para fins de estudo.</p>
+      <a href="#home">Voltar ao topo</a>
+    </div>
+  </footer>
+
+</body>
+</html>
