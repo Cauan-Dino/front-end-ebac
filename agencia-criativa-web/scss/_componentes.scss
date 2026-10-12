@@ -1,0 +1,106 @@
+// =====================================================
+// COMPONENTES — peças reutilizáveis (menu, botão,
+// cartão, formulário)
+// =====================================================
+@use 'variaveis' as *;
+@use 'mixins' as *;
+
+// ---------- Menu ----------
+.menu {
+  &__lista {
+    @include flex-centro(row, $espacamento);
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-weight: 500;
+    color: $cor-texto;
+    padding: calc($espacamento-pequeno / 2) 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color $transicao, color $transicao;
+
+    &:hover {
+      color: $cor-primaria;
+      border-bottom-color: $cor-primaria;
+    }
+  }
+}
+
+// ---------- Botão ----------
+.botao {
+  @include botao;
+
+  &:hover {
+    background-color: $cor-primaria-escura;
+    border-color: $cor-primaria-escura;
+  }
+
+  &--destaque {
+    @include botao($cor-secundaria, $cor-texto);
+
+    &:hover {
+      background-color: transparent;
+      color: $cor-secundaria;
+    }
+  }
+}
+
+// ---------- Cartão (serviços / portfólio) ----------
+.cartao {
+  padding: $espacamento-grande;
+  background-color: $cor-fundo;
+  border: 1px solid $cor-borda;
+  border-radius: $raio-borda;
+
+  &__imagem {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: calc($raio-borda / 2);
+    margin-bottom: $espacamento;
+  }
+
+  &__titulo {
+    font-size: $tamanho-fonte-base * 1.25;
+    margin-bottom: $espacamento-pequeno;
+  }
+
+  &__texto {
+    color: $cor-texto-suave;
+  }
+}
+
+// ---------- Formulário de contato ----------
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: $espacamento;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &__campo {
+    display: flex;
+    flex-direction: column;
+    gap: calc($espacamento-pequeno / 2);
+  }
+
+  &__rotulo {
+    font-weight: 600;
+  }
+
+  &__entrada {
+    padding: $espacamento-pequeno * 1.5;
+    font: inherit;
+    border: 1px solid $cor-borda;
+    border-radius: $raio-borda;
+
+    &:focus {
+      border-color: $cor-primaria;
+    }
+  }
+
+  &__botao {
+    align-self: flex-start;
+  }
+}

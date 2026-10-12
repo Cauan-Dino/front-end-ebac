@@ -1,0 +1,41 @@
+// =====================================================
+// MIXINS — blocos de estilo reutilizáveis
+// =====================================================
+@use 'variaveis' as *;
+
+// 1) Botão padrão: recebe cor de fundo e cor do texto
+@mixin botao($fundo: $cor-primaria, $texto: $cor-branca) {
+  display: inline-block;
+  padding: $espacamento-pequeno * 1.5 $espacamento-grande;  // 0.75rem 2rem
+  background-color: $fundo;
+  color: $texto;
+  font-family: $fonte-titulo;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid $fundo;
+  border-radius: $raio-borda;
+  cursor: pointer;
+  transition: background-color $transicao, color $transicao;
+}
+
+// 2) Espaçamento vertical de seção (multiplicador opcional)
+@mixin espacamento-secao($multiplicador: 1) {
+  padding-top: $espacamento-secao * $multiplicador;
+  padding-bottom: $espacamento-secao * $multiplicador;
+}
+
+// 3) Flex centralizado com gap configurável
+@mixin flex-centro($direcao: row, $gap: $espacamento) {
+  display: flex;
+  flex-direction: $direcao;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+// 4) Media query reutilizável
+@mixin a-partir-de($largura) {
+  @media (min-width: $largura) {
+    @content;
+  }
+}

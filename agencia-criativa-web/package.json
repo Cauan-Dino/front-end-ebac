@@ -1,0 +1,13 @@
+{
+  "name": "agencia-criativa-web",
+  "version": "1.0.0",
+  "description": "Projeto Agência Criativa Web convertido para SASS modular com BEM",
+  "scripts": {
+    "sass": "sass scss/estilos.scss css/estilos.css --no-source-map",
+    "sass:watch": "sass --watch scss/estilos.scss css/estilos.css --no-source-map",
+    "build": "sass scss/estilos.scss css/estilos.css --no-source-map --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.80.0"
+  }
+}

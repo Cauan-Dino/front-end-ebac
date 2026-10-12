@@ -1,0 +1,115 @@
+// =====================================================
+// LAYOUT — estrutura das grandes áreas da página
+// (container, cabeçalho, seções, rodapé)
+// =====================================================
+@use 'variaveis' as *;
+@use 'mixins' as *;
+
+.container {
+  width: 100%;
+  max-width: $largura-maxima;
+  margin: 0 auto;
+  padding: 0 $espacamento;
+}
+
+// ---------- Cabeçalho ----------
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: $cor-fundo;
+  border-bottom: 1px solid $cor-borda;
+
+  &__conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $espacamento-pequeno;
+    padding: $espacamento 0;
+
+    @include a-partir-de($bp-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    font-family: $fonte-titulo;
+    font-size: $tamanho-fonte-base * 1.5;
+    font-weight: 700;
+    color: $cor-primaria;
+    text-decoration: none;
+  }
+}
+
+// ---------- Hero ----------
+.hero {
+  @include espacamento-secao(1.5);
+  background-color: $cor-primaria;
+  color: $cor-branca;
+  text-align: center;
+
+  &__titulo {
+    font-size: $tamanho-fonte-base * 2;
+    margin-bottom: $espacamento;
+
+    @include a-partir-de($bp-tablet) {
+      font-size: $tamanho-fonte-base * 3;
+    }
+  }
+
+  &__texto {
+    max-width: 60ch;
+    margin: 0 auto $espacamento-grande;
+    opacity: 0.9;
+  }
+}
+
+// ---------- Seções genéricas ----------
+.secao {
+  @include espacamento-secao;
+
+  &--alternativa {
+    background-color: $cor-fundo-alternativo;
+  }
+
+  &__titulo {
+    font-size: $tamanho-fonte-base * 2;
+    text-align: center;
+    margin-bottom: calc($espacamento-grande / 2);
+  }
+
+  &__subtitulo {
+    text-align: center;
+    color: $cor-texto-suave;
+    margin-bottom: $espacamento-grande;
+  }
+}
+
+// ---------- Grade de cartões ----------
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $espacamento-grande;
+
+  @include a-partir-de($bp-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include a-partir-de($bp-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// ---------- Rodapé ----------
+.rodape {
+  padding: $espacamento-grande 0;
+  background-color: $cor-texto;
+  color: $cor-branca;
+  text-align: center;
+
+  &__texto {
+    font-size: $tamanho-fonte-base * 0.875;
+    opacity: 0.8;
+  }
+}

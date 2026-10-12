@@ -1,0 +1,8 @@
+// =====================================================
+// ARQUIVO PRINCIPAL — só importa os partials.
+// Ordem: base → layout → componentes
+// (_variaveis e _mixins são carregados por quem os usa)
+// =====================================================
+@use 'base';
+@use 'layout';
+@use 'componentes';

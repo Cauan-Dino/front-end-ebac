@@ -1,0 +1,36 @@
+// =====================================================
+// VARIÁVEIS — fonte única de verdade do projeto
+// Mudou a cor da marca? Altere só aqui.
+// =====================================================
+
+// Cores
+$cor-primaria: #3a2fd6;
+$cor-primaria-escura: #2a21a8;
+$cor-secundaria: #ffb400;
+$cor-texto: #1f2233;
+$cor-texto-suave: #5b6075;
+$cor-fundo: #ffffff;
+$cor-fundo-alternativo: #f2f3f8;
+$cor-borda: #dcdfe9;
+$cor-branca: #ffffff;
+
+// Fontes
+$fonte-titulo: 'Poppins', Arial, sans-serif;
+$fonte-texto: 'Inter', Arial, sans-serif;
+$tamanho-fonte-base: 1rem;
+$altura-linha: 1.6;
+
+// Espaçamentos (base de 1rem; os demais derivam dela com operadores)
+$espacamento: 1rem;
+$espacamento-pequeno: calc($espacamento / 2);   // 0.5rem
+$espacamento-grande: $espacamento * 2;          // 2rem
+$espacamento-secao: $espacamento * 4;           // 4rem
+
+// Layout
+$largura-maxima: 1140px;
+$raio-borda: 8px;
+$transicao: 0.3s ease;
+
+// Breakpoints
+$bp-tablet: 768px;
+$bp-desktop: 1024px;

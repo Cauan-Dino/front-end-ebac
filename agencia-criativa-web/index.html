@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agência Criativa Web</title>
+  <!-- CSS compilado a partir de scss/estilos.scss -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="container cabecalho__conteudo">
+      <a href="#" class="cabecalho__logo">Agência Criativa</a>
+      <nav class="menu" aria-label="Menu principal">
+        <ul class="menu__lista">
+          <li><a href="#servicos" class="menu__link">Serviços</a></li>
+          <li><a href="#portfolio" class="menu__link">Portfólio</a></li>
+          <li><a href="#contato" class="menu__link">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__titulo">Sites que fazem sua marca ser lembrada</h1>
+        <p class="hero__texto">Criamos sites, identidades visuais e campanhas digitais para pequenas e médias empresas.</p>
+        <a href="#contato" class="botao botao--destaque">Pedir orçamento</a>
+      </div>
+    </section>
+
+    <section id="servicos" class="secao">
+      <div class="container">
+        <h2 class="secao__titulo">Serviços</h2>
+        <p class="secao__subtitulo">Do planejamento ao lançamento.</p>
+        <div class="grade">
+          <article class="cartao">
+            <h3 class="cartao__titulo">Criação de sites</h3>
+            <p class="cartao__texto">Sites responsivos, rápidos e fáceis de atualizar.</p>
+          </article>
+          <article class="cartao">
+            <h3 class="cartao__titulo">Identidade visual</h3>
+            <p class="cartao__texto">Logotipo, paleta de cores e guia de marca.</p>
+          </article>
+          <article class="cartao">
+            <h3 class="cartao__titulo">Marketing digital</h3>
+            <p class="cartao__texto">Conteúdo e anúncios para redes sociais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="secao secao--alternativa">
+      <div class="container">
+        <h2 class="secao__titulo">Portfólio</h2>
+        <p class="secao__subtitulo">Alguns projetos recentes.</p>
+        <div class="grade">
+          <article class="cartao">
+            <img class="cartao__imagem" src="https://placehold.co/600x375" alt="Site da Padaria Pão Quente">
+            <h3 class="cartao__titulo">Padaria Pão Quente</h3>
+            <p class="cartao__texto">Site institucional com cardápio on-line.</p>
+          </article>
+          <article class="cartao">
+            <img class="cartao__imagem" src="https://placehold.co/600x375" alt="Loja virtual Ateliê Flor">
+            <h3 class="cartao__titulo">Ateliê Flor</h3>
+            <p class="cartao__texto">Loja virtual de artesanato.</p>
+          </article>
+          <article class="cartao">
+            <img class="cartao__imagem" src="https://placehold.co/600x375" alt="Identidade visual da Clínica Vida">
+            <h3 class="cartao__titulo">Clínica Vida</h3>
+            <p class="cartao__texto">Nova identidade visual e site.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="secao">
+      <div class="container">
+        <h2 class="secao__titulo">Contato</h2>
+        <p class="secao__subtitulo">Conte sobre o seu projeto.</p>
+        <form class="formulario">
+          <div class="formulario__campo">
+            <label for="nome" class="formulario__rotulo">Nome</label>
+            <input type="text" id="nome" class="formulario__entrada" required>
+          </div>
+          <div class="formulario__campo">
+            <label for="email" class="formulario__rotulo">E-mail</label>
+            <input type="email" id="email" class="formulario__entrada" required>
+          </div>
+          <div class="formulario__campo">
+            <label for="mensagem" class="formulario__rotulo">Mensagem</label>
+            <textarea id="mensagem" rows="5" class="formulario__entrada" required></textarea>
+          </div>
+          <button type="submit" class="botao formulario__botao">Enviar mensagem</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p class="rodape__texto">© 2026 Agência Criativa Web. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</body>
+</html>

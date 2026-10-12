@@ -1,0 +1,49 @@
+// =====================================================
+// BASE — reset e estilos de elementos HTML
+// =====================================================
+@use 'variaveis' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $fonte-texto;
+  font-size: $tamanho-fonte-base;
+  line-height: $altura-linha;
+  color: $cor-texto;
+  background-color: $cor-fundo;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $fonte-titulo;
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid $cor-secundaria;
+  outline-offset: 2px;
+}
