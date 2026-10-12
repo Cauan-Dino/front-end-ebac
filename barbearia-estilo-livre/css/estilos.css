@@ -1,0 +1,117 @@
+/* ===== Barbearia Estilo Livre — customizações sobre o Bootstrap ===== */
+
+:root {
+  --dourado: #c8a165;
+  --dourado-escuro: #8a6a3b;
+  --escuro: #1a1612;
+  --cartao: #241f19;
+  --claro: #f6f2ec;
+  --navbar-altura: 72px;
+}
+
+html {
+  scroll-padding-top: var(--navbar-altura);
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #2b2620;
+}
+
+.titulo,
+.logo-texto {
+  font-family: "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.logo-texto { font-size: 1.4rem; }
+.letter-spacing { letter-spacing: 3px; font-size: .85rem; }
+
+/* Cores */
+.bg-escuro { background-color: var(--escuro) !important; }
+.bg-preto { background-color: #110e0b; }
+.bg-claro { background-color: var(--claro); }
+.bg-cartao { background-color: var(--cartao); }
+.bg-dourado { background-color: var(--dourado) !important; }
+.text-dourado { color: var(--dourado) !important; }
+.text-dourado-escuro { color: var(--dourado-escuro) !important; }
+
+/* Botão principal */
+.btn-dourado {
+  --bs-btn-color: #1a1612;
+  --bs-btn-bg: var(--dourado);
+  --bs-btn-border-color: var(--dourado);
+  --bs-btn-hover-color: #1a1612;
+  --bs-btn-hover-bg: #d9b47c;
+  --bs-btn-hover-border-color: #d9b47c;
+  --bs-btn-active-bg: #b48d52;
+  --bs-btn-active-border-color: #b48d52;
+  --bs-btn-focus-shadow-rgb: 200, 161, 101;
+  font-weight: 600;
+}
+
+/* Navbar */
+.navbar .nav-link { font-weight: 500; }
+.navbar .nav-link.active,
+.navbar .nav-link:hover { color: var(--dourado) !important; }
+
+/* Home */
+.hero {
+  min-height: 100vh;
+  padding-top: var(--navbar-altura);
+  background: linear-gradient(90deg, rgba(18, 15, 12, .92) 0%, rgba(18, 15, 12, .55) 60%, rgba(18, 15, 12, .25) 100%),
+              url("../img/hero.svg") center / cover no-repeat;
+  background-color: var(--escuro);
+}
+
+/* Sobre */
+.numero {
+  font-family: "Oswald", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dourado-escuro);
+}
+
+/* Serviços */
+.servico {
+  background-color: var(--cartao);
+  color: #fff;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.servico:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .4);
+}
+.servico .card-text { color: #b8afa3 !important; }
+.servico small { color: #b8afa3 !important; }
+.preco {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.4rem;
+  color: var(--dourado);
+}
+
+/* Depoimentos */
+.depoimento { padding-bottom: 3rem; }
+.depoimento .blockquote p { font-size: 1.2rem; font-style: italic; }
+#carouselDepoimentos .carousel-indicators [data-bs-target] { background-color: var(--dourado-escuro); }
+
+/* Formulário */
+#contato .form-label { color: #e6dfd4; }
+#contato .form-control {
+  background-color: #1a1612;
+  border-color: #3a3229;
+  color: #fff;
+}
+#contato .form-control::placeholder { color: #8a8175; }
+#contato .form-control:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 .25rem rgba(200, 161, 101, .25);
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 575.98px) {
+  .hero h1 { font-size: 2.6rem; }
+  .depoimento .blockquote p { font-size: 1.05rem; }
+}
