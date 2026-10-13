@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pet&Style: tudo para o seu pet com estilo. Rações, brinquedos, caminhas e acessórios.">
+  <title>Pet&amp;Style | Loja para Pets</title>
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-orange-50 font-sans text-stone-800 antialiased">
+
+  <!-- ===== Header ===== -->
+  <header class="sticky top-0 z-50 bg-white/90 shadow-sm backdrop-blur">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#inicio" class="flex items-center gap-2">
+        <img src="imagens/logo.svg" alt="Logo Pet&Style" class="h-10 w-10">
+        <span class="text-2xl font-black tracking-tight">Pet<span class="text-orange-500">&amp;</span>Style</span>
+      </a>
+
+      <!-- Botão do menu (celular) -->
+      <button id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"
+              class="rounded-lg p-2 text-stone-700 hover:bg-orange-100 md:hidden">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Menu: coluna no celular, linha a partir do md -->
+      <ul id="menu"
+          class="absolute inset-x-0 top-full hidden flex-col gap-1 bg-white px-4 pb-4 shadow-md
+                 md:static md:flex md:flex-row md:items-center md:gap-6 md:bg-transparent md:p-0 md:shadow-none">
+        <li><a href="#inicio" class="block rounded-lg px-3 py-2 font-semibold hover:bg-orange-100 hover:text-orange-600 md:p-0 md:hover:bg-transparent">Início</a></li>
+        <li><a href="#produtos" class="block rounded-lg px-3 py-2 font-semibold hover:bg-orange-100 hover:text-orange-600 md:p-0 md:hover:bg-transparent">Produtos</a></li>
+        <li><a href="#depoimentos" class="block rounded-lg px-3 py-2 font-semibold hover:bg-orange-100 hover:text-orange-600 md:p-0 md:hover:bg-transparent">Depoimentos</a></li>
+        <li><a href="#contato" class="block rounded-lg px-3 py-2 font-semibold hover:bg-orange-100 hover:text-orange-600 md:p-0 md:hover:bg-transparent">Contato</a></li>
+        <li class="mt-2 md:mt-0">
+          <a href="#produtos" class="block rounded-full bg-orange-500 px-5 py-2 text-center font-bold text-white hover:bg-orange-600">Comprar</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section id="inicio" class="scroll-mt-20">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-2 lg:px-8 lg:py-24">
+        <div class="text-center md:text-left">
+          <span class="inline-block rounded-full bg-teal-100 px-4 py-1 text-sm font-bold text-teal-700">Frete grátis acima de R$ 150</span>
+          <h1 class="mt-4 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+            Tudo para o seu pet, <span class="text-orange-500">com estilo.</span>
+          </h1>
+          <p class="mt-4 text-lg text-stone-600 sm:text-xl">
+            Rações, brinquedos, caminhas e acessórios escolhidos a dedo para cães e gatos felizes.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
+            <a href="#produtos" class="rounded-full bg-orange-500 px-8 py-3 text-lg font-bold text-white shadow-lg shadow-orange-500/30 transition hover:-translate-y-0.5 hover:bg-orange-600">
+              Ver produtos
+            </a>
+            <a href="#contato" class="rounded-full border-2 border-stone-800 px-8 py-3 text-lg font-bold transition hover:bg-stone-800 hover:text-white">
+              Fale conosco
+            </a>
+          </div>
+        </div>
+        <div class="mx-auto w-full max-w-sm sm:max-w-md lg:max-w-lg">
+          <img src="imagens/hero.svg" alt="Ilustração de um cachorro e um gato com coleiras" class="w-full">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Produtos ===== -->
+    <section id="produtos" class="scroll-mt-20 bg-white py-16 lg:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 text-center">
+          <p class="text-sm font-extrabold uppercase tracking-widest text-orange-500">Produtos</p>
+          <h2 class="mt-2 text-3xl font-black sm:text-4xl">Os queridinhos da semana</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Card 1 -->
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="imagens/produto-racao.svg" alt="Pacote de ração" class="aspect-[4/3] w-full object-cover">
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Alimentação</span>
+              <h3 class="mt-1 text-lg font-extrabold">Ração Premium 10kg</h3>
+              <p class="mt-1 flex-1 text-sm text-stone-600">Para cães adultos de todas as raças.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-2xl font-black text-orange-500">R$ 189,90</span>
+                <button type="button" class="rounded-full bg-stone-800 px-4 py-2 text-sm font-bold text-white hover:bg-orange-500">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="imagens/produto-brinquedo.svg" alt="Osso e bolinha de brinquedo" class="aspect-[4/3] w-full object-cover">
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Brinquedos</span>
+              <h3 class="mt-1 text-lg font-extrabold">Kit Osso + Bolinha</h3>
+              <p class="mt-1 flex-1 text-sm text-stone-600">Borracha atóxica e resistente a mordidas.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-2xl font-black text-orange-500">R$ 39,90</span>
+                <button type="button" class="rounded-full bg-stone-800 px-4 py-2 text-sm font-bold text-white hover:bg-orange-500">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="relative flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <span class="absolute right-3 top-3 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white">-20%</span>
+            <img src="imagens/produto-cama.svg" alt="Caminha redonda com pet dormindo" class="aspect-[4/3] w-full object-cover">
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Conforto</span>
+              <h3 class="mt-1 text-lg font-extrabold">Caminha Nuvem</h3>
+              <p class="mt-1 flex-1 text-sm text-stone-600">Macia, lavável e com fundo antiderrapante.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <div>
+                  <span class="block text-sm text-stone-400 line-through">R$ 149,90</span>
+                  <span class="text-2xl font-black text-orange-500">R$ 119,90</span>
+                </div>
+                <button type="button" class="rounded-full bg-stone-800 px-4 py-2 text-sm font-bold text-white hover:bg-orange-500">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+            <img src="imagens/produto-coleira.svg" alt="Coleira vermelha com plaquinha" class="aspect-[4/3] w-full object-cover">
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-bold uppercase tracking-wide text-teal-600">Acessórios</span>
+              <h3 class="mt-1 text-lg font-extrabold">Coleira com Plaquinha</h3>
+              <p class="mt-1 flex-1 text-sm text-stone-600">Ajustável, com nome gravado de brinde.</p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-2xl font-black text-orange-500">R$ 54,90</span>
+                <button type="button" class="rounded-full bg-stone-800 px-4 py-2 text-sm font-bold text-white hover:bg-orange-500">Comprar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Depoimentos ===== -->
+    <section id="depoimentos" class="scroll-mt-20 py-16 lg:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 text-center">
+          <p class="text-sm font-extrabold uppercase tracking-widest text-orange-500">Depoimentos</p>
+          <h2 class="mt-2 text-3xl font-black sm:text-4xl">Tutores (e pets) aprovam</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <figure class="rounded-2xl bg-white p-6 shadow-sm">
+            <div class="text-xl text-amber-400" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="mt-3 text-stone-700">“A caminha nuvem virou o lugar favorito da Mel. Chegou em dois dias!”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 font-black text-white">JS</span>
+              <span><strong class="block">Juliana S.</strong><span class="text-sm text-stone-500">tutora da Mel</span></span>
+            </figcaption>
+          </figure>
+          <figure class="rounded-2xl bg-white p-6 shadow-sm">
+            <div class="text-xl text-amber-400" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="mt-3 text-stone-700">“O osso aguentou o Thor, que destrói tudo. Melhor compra do ano.”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-teal-600 font-black text-white">RM</span>
+              <span><strong class="block">Rodrigo M.</strong><span class="text-sm text-stone-500">tutor do Thor</span></span>
+            </figcaption>
+          </figure>
+          <figure class="rounded-2xl bg-white p-6 shadow-sm">
+            <div class="text-xl text-amber-400" aria-label="5 estrelas">★★★★★</div>
+            <blockquote class="mt-3 text-stone-700">“Atendimento super atencioso, me ajudaram a escolher a ração certa pro Frajola.”</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full bg-rose-500 font-black text-white">AC</span>
+              <span><strong class="block">Ana C.</strong><span class="text-sm text-stone-500">tutora do Frajola</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contato ===== -->
+    <section id="contato" class="scroll-mt-20 bg-stone-900 py-16 text-white lg:py-24">
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-5 lg:px-8">
+        <div class="lg:col-span-2">
+          <p class="text-sm font-extrabold uppercase tracking-widest text-orange-400">Contato</p>
+          <h2 class="mt-2 text-3xl font-black sm:text-4xl">Ficou com alguma dúvida?</h2>
+          <p class="mt-4 text-stone-300">Mande uma mensagem que a gente responde rapidinho.</p>
+          <ul class="mt-8 space-y-4">
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-lg">✉</span>
+              <a href="mailto:contato@petstyle.com.br" class="font-semibold hover:text-orange-400">contato@petstyle.com.br</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-500 text-lg">☎</span>
+              <a href="tel:+5511988887777" class="font-semibold hover:text-orange-400">(11) 98888-7777</a>
+            </li>
+          </ul>
+        </div>
+
+        <form id="formContato" class="rounded-2xl bg-stone-800 p-6 sm:p-8 lg:col-span-3">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="nome" class="mb-1 block text-sm font-bold">Nome</label>
+              <input id="nome" name="nome" type="text" required placeholder="Seu nome"
+                     class="w-full rounded-lg border border-stone-600 bg-stone-900 px-4 py-3 placeholder-stone-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/40">
+            </div>
+            <div>
+              <label for="email" class="mb-1 block text-sm font-bold">E-mail</label>
+              <input id="email" name="email" type="email" required placeholder="voce@email.com"
+                     class="w-full rounded-lg border border-stone-600 bg-stone-900 px-4 py-3 placeholder-stone-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/40">
+            </div>
+            <div class="sm:col-span-2">
+              <label for="mensagem" class="mb-1 block text-sm font-bold">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Como podemos ajudar?"
+                        class="w-full rounded-lg border border-stone-600 bg-stone-900 px-4 py-3 placeholder-stone-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/40"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="mt-6 w-full rounded-full bg-orange-500 px-8 py-3 text-lg font-bold hover:bg-orange-600 sm:w-auto">
+            Enviar mensagem
+          </button>
+          <p id="sucesso" class="mt-4 hidden rounded-lg bg-teal-600/20 px-4 py-3 font-semibold text-teal-300" role="status">
+            Mensagem enviada! Em breve entraremos em contato. 🐾
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Rodapé ===== -->
+  <footer class="bg-stone-950 py-6 text-center text-sm text-stone-400">
+    &copy; 2026 Pet&amp;Style. Loja fictícia criada para estudo.
+  </footer>
+
+  <script>
+    // Menu do celular
+    const botaoMenu = document.getElementById('botaoMenu');
+    const menu = document.getElementById('menu');
+    botaoMenu.addEventListener('click', () => {
+      const aberto = menu.classList.toggle('hidden') === false;
+      menu.classList.toggle('flex', aberto);
+      botaoMenu.setAttribute('aria-expanded', aberto);
+    });
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        botaoMenu.setAttribute('aria-expanded', false);
+      }
+    }));
+
+    // Formulário (sem envio real)
+    const form = document.getElementById('formContato');
+    form.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      document.getElementById('sucesso').classList.remove('hidden');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
