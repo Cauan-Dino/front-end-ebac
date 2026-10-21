@@ -1,0 +1,35 @@
+:root {
+  --papel: #f7f3ec;
+  --kraft: #e9dcc8;
+  --tinta: #2a201b;
+  --tinta-suave: #5c4f47;
+  --cafe: #5b2e1f;
+  --destaque: #f2c14e;
+  --destaque-forte: #e8ac1c;
+  --erro: #c0392b;
+  --erro-claro: #ffb4a8;
+
+  --fonte-titulo: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --fonte-texto: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  background: var(--kraft);
+  color: var(--tinta);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
