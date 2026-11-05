@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  gap: 8px;
+}
+
+.campo {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+}
+
+.botao {
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--raio);
+  background: var(--cor-destaque);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rotuloOculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .form {
+    flex-direction: column;
+  }
+}
