@@ -1,0 +1,28 @@
+.pagina {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 20px;
+}
+
+.cabecalho {
+  margin-bottom: 32px;
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.25rem, 7vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.subtitulo {
+  margin-top: 8px;
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 480px) {
+  .pagina {
+    padding: 32px 16px;
+  }
+}

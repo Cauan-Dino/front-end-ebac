@@ -1,0 +1,76 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.2fr;
+  gap: 12px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rotulo {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.entrada {
+  width: 100%;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+}
+
+.botao {
+  align-self: flex-start;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--cor-principal);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.erro {
+  color: var(--cor-perigo);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 18px;
+  }
+
+  .campos {
+    grid-template-columns: 1fr;
+  }
+
+  .botao {
+    align-self: stretch;
+  }
+}

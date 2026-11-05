@@ -1,0 +1,91 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-left: 4px solid var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.info {
+  min-width: 0;
+}
+
+.titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.autor {
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lido {
+  color: var(--cor-lido);
+}
+
+.naoLido {
+  color: var(--cor-nao-lido);
+}
+
+.remover {
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--cor-perigo);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remover:hover {
+  border-color: var(--cor-perigo);
+}
+
+.status:disabled,
+.remover:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.erro {
+  margin-top: 4px;
+  color: var(--cor-perigo);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 520px) {
+  .item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .acoes {
+    justify-content: space-between;
+  }
+}

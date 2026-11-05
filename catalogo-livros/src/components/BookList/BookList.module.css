@@ -1,0 +1,47 @@
+.secao {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cabecalhoLista {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tituloLista {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.contagem {
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aviso {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--cor-texto-suave);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+}
+
+.erro {
+  padding: 14px 16px;
+  color: var(--cor-perigo);
+  background: #f8e9e9;
+  border: 1px solid #e3bcbc;
+  border-radius: var(--raio);
+}

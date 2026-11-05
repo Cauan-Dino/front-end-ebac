@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --cor-fundo: #e8ecea;
+  --cor-superficie: #fbfcfb;
+  --cor-texto: #1d2724;
+  --cor-texto-suave: #57645f;
+  --cor-borda: #c9d2ce;
+  --cor-principal: #1f5e4b;
+  --cor-lido: #1f5e4b;
+  --cor-nao-lido: #8a5a12;
+  --cor-perigo: #b23a3a;
+  --fonte-titulo: 'Literata', Georgia, 'Times New Roman', serif;
+  --fonte-texto: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --raio: 8px;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cor-principal);
+  outline-offset: 2px;
+}
